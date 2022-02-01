@@ -11,10 +11,13 @@ header{
     font-weight: bold;
     text-align: center;
     padding: 40px 0 47px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 /* CARTAS */
 main{
-    /* overflow-x: hidden; */
+    margin-right: -34px;
     
 }    
 .card{
@@ -23,15 +26,17 @@ main{
     background-color: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
+    margin-bottom: 34px;
+    margin-right: 34px;
 }
 .card img{
     width: 100px;
     height: 100px;
     margin: 24px 7px 22px 10px;
 }
-main .main__top{
+.flex{
     display: flex;
-}
-main .main__bottom{
-    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
 }
