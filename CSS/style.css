@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #EEF9BF;
+}
+header{
+    color: #75B79E;
+    font-size: 56px;
+    font-weight: bold;
+    text-align: center;
+    padding: 40px 0 47px 0;
+}
+/* CARTAS */
+main{
+    /* overflow-x: hidden; */
+    
+}    
+.card{
+    width: 117px;
+    height: 146px;
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+}
+.card img{
+    width: 100px;
+    height: 100px;
+    margin: 24px 7px 22px 10px;
+}
+main .main__top{
+    display: flex;
+}
+main .main__bottom{
+    display: flex;
+}
