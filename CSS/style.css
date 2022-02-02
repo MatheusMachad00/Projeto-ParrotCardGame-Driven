@@ -15,11 +15,7 @@ header{
     flex-wrap: wrap;
     justify-content: center;
 }
-/* CARTAS */
-main{
-    margin-right: -34px;
-    
-}    
+/* CARTAS */   
 .card{
     width: 117px;
     height: 146px;
@@ -38,5 +34,6 @@ main{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: auto;
+    padding-left: 122px;
+    padding-right: 116px;
 }
