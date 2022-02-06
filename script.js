@@ -3,6 +3,7 @@ let parrots = ['imagens/bobrossparrot.gif', 'imagens/explodyparrot.gif', 'imagen
 const allCards = document.querySelectorAll('.card');
 let hasFlippedCard = false;
 let firstCard, secondCard;
+let lockBoard = false;
 
 /* Função para quantidade de cartas*/
 function cardQtd() {
@@ -30,7 +31,9 @@ function randomizer() {
 
 /* Função para virar a carta*/
 function flipCard() {
+
     this.classList.add('flip');
+    if (lockBoard) return;
     if (!hasFlippedCard) {
         hasFlippedCard = true;
         firstCard = this;
@@ -40,6 +43,7 @@ function flipCard() {
     hasFlippedCard = false;
     checkForMatch();
 }
+
 /* Função para verificar se as cartas são iguais*/
 function checkForMatch() {
     if (firstCard.dataset.framework === secondCard.dataset.framework) {
@@ -47,16 +51,21 @@ function checkForMatch() {
     }
     unflipCards();
 }
+
 /* Função para desabilitar a virada de carta após o match*/
 function disableCards() {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
+    firstCard.removeEventListener('click', flipCard());
+    secondCard.removeEventListener('click', flipCard());
 }
+
 /* Função para desvirar as cartas*/
 function unflipCards() {
+    lockBoard = true;
     setTimeout(() => {
         firstCard.classList.remove('flip');
         secondCard.classList.remove('flip');
-    }, 1500);
+        lockBoard = false;
+    }, 1000);
 }
+
 allCards.forEach(card => card.addEventListener('click', flipCard));
