@@ -1,18 +1,21 @@
 let numCard = 0;
-let parrots = ['imagens/bobrossparrot.gif', 'imagens/explodyparrot.gif', 'imagens/fiestaparrot.gif', 'imagens/metalparrot.gif', 'imagens/revertitparrot.gif', 'imagens/tripletsparrot.gif', 'imagens/unicornparrot.gif']
+let parrots = ['imagens/bobrossparrot.gif', 'imagens/explodyparrot.gif', 'imagens/fiestaparrot.gif', 'imagens/metalparrot.gif', 'imagens/revertitparrot.gif', 'imagens/tripletsparrot.gif', 'imagens/unicornparrot.gif'];
+const allCards = document.querySelectorAll('.card');
+let hasFlippedCard = false;
+let firstCard, secondCard;
 
 /* Função para quantidade de cartas*/
-function cardQtd(){
+function cardQtd() {
     let i = parseInt(prompt("Digite o número de cartas (4 a 14):"));
-    while(i > 14 || i < 4 || i % 2 !== 0){
+    while (i > 14 || i < 4 || i % 2 !== 0) {
         i = parseInt(prompt("Número inválido. Digite o número de cartas (4 a 14):"));
     }
     numCard = i;
 }
 
 /* Função para randomizar as cartas */
-function randomizer() { 
-	return Math.random() - 0.5; 
+function randomizer() {
+    return Math.random() - 0.5;
 }
 
 /* Função para criar o jogo (FUNÇÃO INCOMPLETA!!!!!!!!)*/
@@ -25,10 +28,35 @@ function randomizer() {
     }
 }*/
 
-
-/* Função para virar a carta */
-const cards = document.querySelectorAll('.card');
+/* Função para virar a carta*/
 function flipCard() {
-    this.classList.toggle('flip');
+    this.classList.add('flip');
+    if (!hasFlippedCard) {
+        hasFlippedCard = true;
+        firstCard = this;
+        return;
+    }
+    secondCard = this;
+    hasFlippedCard = false;
+    checkForMatch();
 }
-cards.forEach(card => card.addEventListener('click', flipCard));
+/* Função para verificar se as cartas são iguais*/
+function checkForMatch() {
+    if (firstCard.dataset.framework === secondCard.dataset.framework) {
+        disableCards();
+    }
+    unflipCards();
+}
+/* Função para desabilitar a virada de carta após o match*/
+function disableCards() {
+    firstCard.removeEventListener('click', flipCard);
+    secondCard.removeEventListener('click', flipCard);
+}
+/* Função para desvirar as cartas*/
+function unflipCards() {
+    setTimeout(() => {
+        firstCard.classList.remove('flip');
+        secondCard.classList.remove('flip');
+    }, 1500);
+}
+allCards.forEach(card => card.addEventListener('click', flipCard));
