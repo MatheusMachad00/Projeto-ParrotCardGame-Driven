@@ -4,9 +4,9 @@ const allCards = document.querySelectorAll('.card');
 let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
-let board =[];
+let board = [];
 
-/* Função para quantidade de cartas*/
+/* Função para quantidade de cartas e criar jogo*/
 function gameStart() {
     let i = parseInt(prompt("Digite o número de cartas (4 a 14):"));
     while (i > 14 || i < 4 || i % 2 !== 0) {
@@ -14,22 +14,24 @@ function gameStart() {
     }
     numCard = i;
     for (let j = 0; j < numCard / 2; j++) {
-        board.push(allCards[j]);
-        board.push(allCards[j]);
+        board.push(parrots[j]);
+        board.push(parrots[j]);
     }
 
     board.sort(randomizer);
     const main = document.querySelector("main");
     main.innerHTML = "";
 
-    for (let i = 0; i < cardsQuantity; i++) {
+    for (let i = 0; i < numCard; i++) {
         main.innerHTML += `
-        <div class="card" data-framework="${board[j]}">
+        <div class="card" data-framework="${board[i]}">
         <img class="front-face" src="imagens/front.png" alt="front">
-        <img class="back-face" src="imagens/${board[j]}.gif" alt="${board[j]}">
+        <img class="back-face" src="imagens/${board[i]}.gif" alt="${board[i]}">
     </div>
         `;
-    }    
+    }
+    flipCard();
+    unflipCards();
 }
 
 /* Função para randomizar as cartas */
