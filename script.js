@@ -21,17 +21,16 @@ function gameStart() {
     board.sort(randomizer);
     const main = document.querySelector("main");
     main.innerHTML = "";
-
     for (let i = 0; i < numCard; i++) {
         main.innerHTML += `
-        <div class="card" data-framework="${board[i]}">
-        <img class="front-face" src="imagens/front.png" alt="front">
-        <img class="back-face" src="imagens/${board[i]}.gif" alt="${board[i]}">
+        <div class="card" data-framework="${board[i]}" data-identifier="card" onclick="flipCard(this)" 
+        >
+        <img class="front-face" src="imagens/front.png" alt="front" data-identifier="front-face">
+        <img class="back-face" src="imagens/${board[i]}.gif" alt="${board[i]}" data-identifier="back-face">
     </div>
         `;
     }
-    flipCard();
-    unflipCards();
+    
 }
 
 /* Função para randomizar as cartas */
@@ -40,9 +39,9 @@ function randomizer() {
 }
 
 /* Função para virar a carta*/
-function flipCard() {
-
-    this.classList.add('flip');
+function flipCard(card) {
+    
+    card.classList.add('flip');
     if (lockBoard) return;
     if (!hasFlippedCard) {
         hasFlippedCard = true;
